@@ -25,7 +25,7 @@
 # ----------
 #
 # * `modules`
-# Tuple[Hash] The array of modules this instance of metricbeat will
+# Tuple[Hash, default] The array of modules this instance of metricbeat will
 # collect. (default: [{}])
 #
 # * `outputs`
@@ -100,7 +100,7 @@
 # `tag` field of each published transaction. This is useful for
 # identifying groups of servers by logical property. (default: undef)
 class metricbeat(
-  Tuple[Hash] $modules                                                = [{}],
+  Tuple[Hash,default] $modules                                        = [{}],
   Hash $outputs                                                       = {},
   String $beat_name                                                   = $::hostname,
   Boolean $disable_configtest                                         = false,
