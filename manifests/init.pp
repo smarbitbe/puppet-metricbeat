@@ -100,7 +100,7 @@
 # `tag` field of each published transaction. This is useful for
 # identifying groups of servers by logical property. (default: undef)
 class metricbeat(
-  Tuple[Hash,default] $modules                                        = [{}],
+  #Tuple[Hash,default] $modules                                        = [{}],
   Hash $outputs                                                       = {},
   String $beat_name                                                   = $::hostname,
   Boolean $disable_configtest                                         = false,
@@ -141,6 +141,8 @@ class metricbeat(
   Boolean $service_has_restart                                        = true,
   Optional[Array[String]] $tags                                       = undef,
 ) {
+  $modules = lookup('metricbeat::modules', Tuple[Hash, default], 'deep', [{}])
+  
   if $manage_repo {
     class{'metricbeat::repo':}
 
